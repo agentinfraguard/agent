@@ -191,34 +191,6 @@ installAgent() {
         fi
     }
 
-# Install Apache for ssh window for autologin to server.
-installApache(){
-	
-	command = 'yum install -y httpd24 php56 php56-mysqlnd'
-	$command
-
-	local url="wget -O /var/www/html/index.php https://raw.githubusercontent.com/agentinfraguard/agent/master/scripts/webconsole.php --no-check-certificate "
-	wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
-	
-	exec="chown root:root /var/www/html/index.php"
-	$exec
-	exec="chmod 755 /var/www/html/index.php"
-	$exec
-    
-	command = "sed -i 's/Listen 80/Listen 8088/g' /etc/httpd/conf/httpd.conf"
-	$command
-
-	command = "sed -i 's/User apache/User ec2-user/g' /etc/httpd/conf/httpd.conf"
-	$command
-
-	command = "service httpd stop"
-	$command
-	
-	command = "service httpd start"
-	$command
-	
-
-}
 
 # Check whether agent already is running or not. If yes, then abort further process.
 
@@ -276,7 +248,6 @@ removeProcessCmd=$removeProcessCmd
 EOL
 
 installAgent
-installApache
 
 
 
