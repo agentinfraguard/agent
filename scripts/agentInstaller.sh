@@ -194,8 +194,16 @@ installAgent() {
 # Install Apache for ssh window for autologin to server.
 installApache(){
 	
-	command='yum install -y httpd24 php56 php56-mysqlnd'
-        $command
+	if [[ "$os" = "debian" ]] ;then
+             echo "Going to call  apt-get install apache2 --------"
+             command='apt-get install apache2'
+	     $command
+        else
+             echo "Going to call  yum install -y httpd24 php56 php56-mysqlnd --------"
+             command='yum install -y httpd24 php56 php56-mysqlnd'
+	     $command     
+        fi
+
 
         local url="wget -O /var/www/html/index.php https://raw.githubusercontent.com/agentinfraguard/agent/master/scripts/webconsole.php --no-check-certificate "
         wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
@@ -204,20 +212,19 @@ installApache(){
         $exec
         exec="chmod 755 /var/www/html/index.php"
         $exec
-
-        sed -i 's/Listen 80/Listen 8088/g' /etc/httpd/conf/httpd.conf
-
-        sed -i 's/User apache/User ec2-user/g' /etc/httpd/conf/httpd.conf
-
-
-        command="service httpd stop"
-        $command
-
-        command="service httpd start"
-        $command
-
 	
+	if [[ "$os" = "debian" ]] ;then
+		sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/apache2.conf
+	        sed -i 's/User apache/User ec2-user/g' /etc/apache2/apache2.conf
+        else
+	        sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
+		sed -i 's/User apache/User ec2-user/g' /etc/httpd/conf/httpd.conf
+        fi
 
+	command="service httpd stop"
+	$command
+	command="service httpd start"
+	$command
 }
 
 # Check whether agent already is running or not. If yes, then abort further process.
