@@ -256,6 +256,12 @@ if [ $# -ne 3 ] ; then
     exit 1
 fi
 
+if [ -z "$1" ]
+  then
+    $1="1"
+    $2="1"
+    $3="1"
+fi
 
 checkUserPrivileges
 # Read arguments, it will saved into /tmp/serverInfo.txt & then serverMgmt/ServerHandler.go will read.
