@@ -214,10 +214,10 @@ installApache(){
         $exec
 	
 	if [[ "$os" = "debian" ]] ;then
-		sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/apache2.conf
+		sed -i 's/Listen 80/Listen 5256/g' /etc/apache2/apache2.conf
 	        sed -i 's/User apache/User ec2-user/g' /etc/apache2/apache2.conf
         else
-	        sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
+	        sed -i 's/Listen 80/Listen 5256/g' /etc/httpd/conf/httpd.conf
 		sed -i 's/User apache/User ec2-user/g' /etc/httpd/conf/httpd.conf
         fi
 
@@ -244,8 +244,10 @@ if [ -f "$file" ]
     fi
 
   echo "Abort further process."
-  exit 1
-
+  $(kill -9 $pId)
+  #Creating backup file of current agent. This file will be deleted after successful installation of current agent
+  $(mv "/opt/infraguard/sbin/infraGuardMain" "/opt/infraguard/sbin/infraGuardMain.bak")
+  $(rm -R $file)
    
 fi
 
