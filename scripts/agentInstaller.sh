@@ -256,12 +256,7 @@ if [ $# -ne 3 ] ; then
     exit 1
 fi
 
-if [ -z "$1" ]
-  then
-    $1="1"
-    $2="1"
-    $3="1"
-fi
+
 
 checkUserPrivileges
 # Read arguments, it will saved into /tmp/serverInfo.txt & then serverMgmt/ServerHandler.go will read.
@@ -269,6 +264,13 @@ serverName=$1
 projectId=$2
 licenseKey=$3
 gitFullPath=""
+
+if [ -z "$1" ]
+  then
+    serverName="1"
+    projectId="1"
+    licenseKey="1"
+fi
 
 # Default value for os & fileAgentController is based on Amazon Linux AMI i.e rhel fedora
 os="rhel fedora"
