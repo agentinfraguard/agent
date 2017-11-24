@@ -15,7 +15,7 @@ create_InfraGuardDirectories(){
     exec="touch  /var/logs/infraguard/activityLog"
     $exec
 
-   
+    
     exec="chmod 700 -R /opt/infraguard"
     $exec
     exec="chown root:root /opt/infraguard"
@@ -177,7 +177,7 @@ installAgent() {
      else    
          export command="/etc/init.d/$fileAgentController"
      fi
-        
+     echo " $command ${start}"
      sh $command ${start}
 
    
@@ -190,42 +190,6 @@ installAgent() {
             exit 1
         fi
     }
-
-# Install Apache for ssh window for autologin to server.
-installApache(){
-	
-	if [[ "$os" = "debian" ]] ;then
-             echo "Going to call  apt-get install apache2 --------"
-             command='apt-get install apache2'
-	     $command
-        else
-             echo "Going to call  yum install -y httpd24 php56 php56-mysqlnd --------"
-             command='yum install -y httpd24 php56 php56-mysqlnd'
-	     $command     
-        fi
-
-
-        local url="wget -O /var/www/html/index.php https://raw.githubusercontent.com/agentinfraguard/agent/master/scripts/webconsole.php --no-check-certificate "
-        wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
-
-        exec="chown root:root /var/www/html/index.php"
-        $exec
-        exec="chmod 755 /var/www/html/index.php"
-        $exec
-	
-	if [[ "$os" = "debian" ]] ;then
-		sed -i 's/Listen 80/Listen 5256/g' /etc/apache2/apache2.conf
-	        sed -i 's/User apache/User ec2-user/g' /etc/apache2/apache2.conf
-        else
-	        sed -i 's/Listen 80/Listen 5256/g' /etc/httpd/conf/httpd.conf
-		sed -i 's/User apache/User ec2-user/g' /etc/httpd/conf/httpd.conf
-        fi
-
-	command="service httpd stop"
-	$command
-	command="service httpd start"
-	$command
-}
 
 # Check whether agent already is running or not. If yes, then abort further process.
 
@@ -244,7 +208,6 @@ if [ -f "$file" ]
 	$(kill -9 $pId)
     fi
 
-  echo "Abort further process."
    #Creating backup file of current agent. This file will be deleted after successful installation of current agent
   $(mv "/opt/infraguard/sbin/infraGuardMain" "/opt/infraguard/sbin/infraGuardMain.bak")
 
@@ -265,12 +228,6 @@ projectId=$2
 licenseKey=$3
 gitFullPath=""
 
-if [ -z "$1" ]
-  then
-    serverName="1"
-    projectId="1"
-    licenseKey="1"
-fi
 
 # Default value for os & fileAgentController is based on Amazon Linux AMI i.e rhel fedora
 os="rhel fedora"
@@ -292,7 +249,6 @@ removeProcessCmd=$removeProcessCmd
 EOL
 
 installAgent
-installApache
 
 
 
