@@ -12,11 +12,7 @@ $NO_LOGIN = true;
 // Single-user credentials
 // Example: $USER = 'user'; $PASSWORD = 'password';
 
-//$json = file_get_contents('http://rc.infraguard.io/checkServerLogin?c='.$_REQUEST['c']);
-//$obj = json_decode($json);
-//if($obj->found==0){
-//	die("Your session has been expired. Please try it again.");
-//}
+
 $USER = '';
 $PASSWORD = '';
 
@@ -781,6 +777,13 @@ class WebConsoleRPCServer extends BaseJsonRpcServer {
     }
 
     public function run($token, $environment, $command) {
+		if($command=="exit"){
+			$json = file_get_contents('http://rc.infraguard.io/deleteSecurityGroupB?id='.$_REQUEST['id']);
+			$obj = json_decode($json);
+			if($obj->success==1){
+				die("Exit.");
+			}
+		}
         $result = $this->initialize($token, $environment);
         if ($result) return $result;
 
