@@ -47,6 +47,16 @@ fi
 
 }
 
+status_check()
+{
+infra_status=$(ps -ef | grep 'infraGuardMain' | grep -v 'grep' | awk '{ printf $2 }')
+if [[ $infra_status ]]
+then
+   echo "infraguard agent is running with pid $infra_status" 
+else
+   echo "infraguard agent is not running "
+fi
+}
 
 
 case "$1" in
@@ -58,7 +68,7 @@ case "$1" in
         ;;
 
 status)
-        status agent_controller.sh
+        status_check
         ;;
 
  *)
