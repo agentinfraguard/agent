@@ -40,7 +40,7 @@ getLinuxType(){
    
    while IFS= read -r line; do
 
-      if [[ $line == *"ID"* ]]; then
+      if [[ $line == "ID"* ]]; then
          echo "$line"
          
          osType=${line/ID=/""} # Extract string after "=" i.e ID_LIKE="fedora"
