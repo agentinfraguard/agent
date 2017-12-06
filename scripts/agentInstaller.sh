@@ -107,7 +107,8 @@ installAgent() {
     echo "Downloading $fileAgentController "
     #local url="wget -O /tmp/$fileAgentController https://raw.githubusercontent.com/agentinfraguard/agent/master/scripts/$fileAgentController"
     local url="wget -O /tmp/$fileAgentController $gitFullPath --no-check-certificate "
-    wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    #wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    $url
     command="mv /tmp/$fileAgentController  /etc/init.d"
     $command
     exec="chown root:root /etc/init.d/$fileAgentController"
@@ -130,7 +131,8 @@ installAgent() {
     url="wget -O /opt/infraguard/sbin/infraGuardMain $gitFullPath --no-check-certificate "
     
     #url="wget -O /opt/infraguard/sbin/infraGuardMain https://raw.githubusercontent.com/agentinfraguard/agent/master/go/src/test/infraGuardMain"
-    wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    #wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    $url
     echo "infraGuardMain downloaded."
     exec="chown root:root /opt/infraguard/sbin/infraGuardMain"
     $exec
