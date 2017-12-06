@@ -51,7 +51,6 @@ fi
 
 case "$1" in
   start)
-        get_osflavor
         start
         ;;
   stop)
