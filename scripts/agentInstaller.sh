@@ -40,20 +40,23 @@ getLinuxType(){
    
    while IFS= read -r line; do
 
-      if [[ $line == *"ID_LIKE"* ]]; then
+      if [[ $line == *"ID"* ]]; then
          echo "$line"
          
-         osType=${line/ID_LIKE=/""} # Extract string after "=" i.e ID_LIKE="fedora"
+         osType=${line/ID=/""} # Extract string after "=" i.e ID_LIKE="fedora"
          osType="${osType%\"}" # Remove dbl quotes - suffix
          osType="${osType#\"}" # Remove dbl quotes - prefix
        
                 
-          if [[ $osType == "debian" ]]; then
+          if [[ $osType == "debian" || $osType == "ubuntu"  ]]; then
              os="debian"
              fileAgentController="agent_controller_ubuntu.sh"
              removeProcessCmd="update-rc.d -f agent_controller_ubuntu.sh remove"
           fi
-
+          if [[ $osType == "sles" ]]; then
+             os="suse"
+             fileAgentController="agent_controller_suse.sh"
+          fi
 
           if [[ $osType == "fedora" ]]; then
              os="fedora"
