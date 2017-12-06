@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-. /etc/init.d/functions
+#. /etc/init.d/functions
 
 # chkconfig: 35 90 12
 # description: Agent Installer Test
