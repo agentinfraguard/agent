@@ -85,7 +85,8 @@ getFilePath(){
 
     if [[ $fileName == "agent_controller.sh"  ||
          $fileName == "agent_controller.service" ||
-         $fileName == "agent_controller_ubuntu.sh" ]]; then
+         $fileName == "agent_controller_ubuntu.sh" ||
+	 $fileName == "agent_controller_suse.sh" ]]; then
        gitFullPath="https://raw.githubusercontent.com/$repoName/agent/master/scripts/$fileName"
 
     fi
