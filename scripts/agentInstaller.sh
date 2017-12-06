@@ -149,7 +149,8 @@ installAgent() {
     echo ""
     echo "Downloading property file i.e agentConstants.txt ...."
     url="wget -O /opt/infraguard/etc/agentConstants.txt $gitFullPath --no-check-certificate "
-    wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    #wget $url--progress=dot $url 2>&1 | grep --line-buffered "%" | sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
+    $url
     echo "agentConstants.txt downloaded."
 
     #echo "152. gitFullPath = : $gitFullPath"
