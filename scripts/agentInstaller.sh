@@ -58,7 +58,7 @@ getLinuxType(){
              fileAgentController="agent_controller_suse.sh"
           fi
 
-          if [[ $osType == "fedora" ]]; then
+          if [[ $osType == "fedora" || $osType == "centos" ]]; then
              os="fedora"
              fileAgentController="agent_controller.service"
           fi
