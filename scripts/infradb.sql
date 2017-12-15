@@ -13,8 +13,8 @@
 
 
 -- Dumping database structure for infradb
-CREATE DATABASE IF NOT EXISTS `infradb` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `infradb`;
+CREATE DATABASE IF NOT EXISTS `InfraDB` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `InfraDB`;
 
 -- Dumping structure for table infradb.agentactivities
 CREATE TABLE IF NOT EXISTS `agentactivities` (
