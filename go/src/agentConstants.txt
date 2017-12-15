@@ -39,6 +39,10 @@ responseUrl_mailUpdatedKey="https://fhywo9k1mc.execute-api.ap-southeast-1.amazon
 responseUrl_addPubKey="https://3yyritd4vi.execute-api.ap-southeast-1.amazonaws.com/prod/serveraccessgranted"
 responseUrl_deletePubKey="https://qip49r8l0k.execute-api.ap-southeast-1.amazonaws.com/prod/serveraccessrevoked"
 responseUrl_updateServerDefaultUserKey="https://lbx6visyg3.execute-api.ap-southeast-1.amazonaws.com/prod/serverkeyupdated"
+responseUrl_rawCommand="http://rc.infraguard.io/commandexecutedbyagent"
+responseUrl_createCron="http://rc.infraguard.io/commandexecutedbyagentforcron"
+responseUrl_editCron="http://rc.infraguard.io/commandexecutedbyagentforcron"
+responseUrl_deleteCron="http://rc.infraguard.io/commandexecutedbyagentforcron"
  
  
 DEFAULT_VALUE="DEFAULT_VALUE"
