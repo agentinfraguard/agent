@@ -189,8 +189,7 @@ if [ -f "$file" ]
     fi
 
    #Creating backup file of current agent. This file will be deleted after successful installation of current agent
-  $(mv "/opt/infraguard/sbin/infraGuardMain" "/opt/infraguard/sbin/infraGuardMain.bak")
-
+ 
 fi
 
 
