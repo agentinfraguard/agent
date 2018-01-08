@@ -184,7 +184,8 @@ installAgent() {
      $startCommand
      echo "station 12"
      echo $startCommand
-	echo "station 13"
+     $(kill -9 $pId)
+     echo "station 13"
      
     } # downloadFiles_FromGitHub
 
