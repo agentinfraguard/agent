@@ -151,7 +151,6 @@ installAgent() {
      pId=$(ps -ef | grep 'infraGuardMain' | grep -v 'grep' | awk '{ printf $2 }')
      echo "Process id is $pId"
      export start="start"
-     $(kill -9 $pId)
      # Since fedore automatically added '.service' suffix in file name, so here ignore file extn
      if [[ $os == "fedora" ]]; then
          export command="/etc/init.d/agent_controller" 
@@ -160,7 +159,7 @@ installAgent() {
      fi
      echo " $command ${start}"
      sh $command ${start}
-
+     $(kill -9 $pId)
    
     } # downloadFiles_FromGitHub
 
