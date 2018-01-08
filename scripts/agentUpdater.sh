@@ -159,7 +159,7 @@ installAgent() {
      fi
      echo " $command ${start}"
      sh $command ${start}
-     $(kill -9 $pId)
+     $(sleep 10 && kill -9 $pid) &
    
     } # downloadFiles_FromGitHub
 
