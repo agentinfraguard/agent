@@ -168,7 +168,7 @@ installAgent() {
      echo "station 7"
      export stopCommand="( sleep 3 ) && (sh $command ${stop}) &"
      echo $stopCommand
-     stopCommandOutput=$stopCommand
+     stopCommandOutput=$(( sleep 3 ) && (sh $command ${stop}) &)
      echo $stopCommandOutput
      echo "station 8"
      echo "station 9"
