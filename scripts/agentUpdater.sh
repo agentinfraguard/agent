@@ -149,6 +149,7 @@ installAgent() {
      fi
  
      pId=$(ps -ef | grep 'infraGuardMain' | grep -v 'grep' | awk '{ printf $2 }')
+     echo "Process id is $pId"
      export start="start"
      $(kill -9 $pId)
      # Since fedore automatically added '.service' suffix in file name, so here ignore file extn
