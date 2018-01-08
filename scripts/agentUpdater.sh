@@ -168,7 +168,7 @@ installAgent() {
      echo "station 7"
      export stopCommand="bash -c sleep 10 ;  sh $command ${stop};"
      echo $stopCommand
-     stopCommandOutput=$(bash -c sleep 10 ;  sh $command ${stop};)&
+     stopCommandOutput=$(bash -c sleep 10 ;  sh $command ${stop};)
      stopCommandOutput2=$stopCommandOutput;
      echo $stopCommandOutput
      echo $stopCommandOutput2
@@ -176,15 +176,13 @@ installAgent() {
      echo "station 9"
      echo "station 10"
      export startCommand="bash -c sleep 15 ;  sh $command ${start};"
-     startCommandOutput=$(bash -c sleep 15 ;  sh $command ${start};)&
+     startCommandOutput=$(bash -c sleep 15 ;  sh $command ${start};)
      startCommandOutput2=$startCommandOutput;
      echo $startCommandOutput
      echo $startCommandOutput2
      echo "station 11"
-     $startCommand
      echo "station 12"
      echo $startCommand
-     $(kill -9 $pId)
      echo "station 13"
      
     } # downloadFiles_FromGitHub
