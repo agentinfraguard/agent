@@ -168,13 +168,13 @@ installAgent() {
      echo "station 7"
      export stopCommand="( sleep 3 ) && (sh $command ${stop}) &"
      echo "station 8"
-     $stopCommand
+     sh $stopCommand
      echo "station 9"
      echo $stopCommand
      echo "station 10"
      export startCommand="( sleep 10 ) && (sh $command ${start}) &"
      echo "station 11"
-     $startCommand
+     sh $startCommand
      echo "station 12"
      echo $startCommand
 	echo "station 13"
