@@ -160,8 +160,10 @@ installAgent() {
      echo " $command ${start}"
      export stopCommand = "( sleep 3 ) && (sh $command stop) &"
      $stopCommand
+     echo $stopCommand
      export startCommand = "( sleep 10 ) && (sh $command start) &"
      $startCommand
+     echo $startCommand
    
     } # downloadFiles_FromGitHub
 
