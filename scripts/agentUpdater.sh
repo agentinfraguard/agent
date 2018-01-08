@@ -166,18 +166,18 @@ installAgent() {
      echo "station 6"
      echo " $command ${start}"
      echo "station 7"
-     export stopCommand="bash -c sleep 10 ;  sh $command ${stop};"
+     export stopCommand="bash -c sleep 10 ;  sh $command ${stop}"
      echo $stopCommand
      stopCommandOutput=$(bash -c sleep 10 ;  sh $command ${stop};)
-     stopCommandOutput2=$stopCommandOutput;
+     stopCommandOutput2=$stopCommandOutput
      echo $stopCommandOutput
      echo $stopCommandOutput2
      echo "station 8"
      echo "station 9"
      echo "station 10"
-     export startCommand="bash -c sleep 15 ;  sh $command ${start};"
+     export startCommand="bash -c sleep 15 ;  sh $command ${start}"
      startCommandOutput=$(bash -c sleep 15 ;  sh $command ${start};)
-     startCommandOutput2=$startCommandOutput;
+     startCommandOutput2=$startCommandOutput
      echo $startCommandOutput
      echo $startCommandOutput2
      echo "station 11"
