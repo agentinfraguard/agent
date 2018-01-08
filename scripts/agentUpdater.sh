@@ -185,7 +185,7 @@ if [ -f "$file" ]
         echo "Agent is stopped."
     else
         echo "Agent is running. Process id is $pId"
-	$(kill -9 $pId)
+	
     fi
 
    #Creating backup file of current agent. This file will be deleted after successful installation of current agent
