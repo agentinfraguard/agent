@@ -148,9 +148,9 @@ installAgent() {
              chkconfig --add /etc/init.d/$fileAgentController     
      fi
  
-
+     pId=$(ps -ef | grep 'infraGuardMain' | grep -v 'grep' | awk '{ printf $2 }')
      export start="start"
-
+     $(kill -9 $pId)
      # Since fedore automatically added '.service' suffix in file name, so here ignore file extn
      if [[ $os == "fedora" ]]; then
          export command="/etc/init.d/agent_controller" 
