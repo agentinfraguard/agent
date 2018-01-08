@@ -158,8 +158,10 @@ installAgent() {
          export command="/etc/init.d/$fileAgentController"
      fi
      echo " $command ${start}"
-     sh $command ${start}
-     $(sleep 10 && kill -9 $pid) &
+     export stopCommand = "( sleep 3 ) && (sh $command stop) &"
+     $stopCommand
+     export startCommand = "( sleep 10 ) && (sh $command start) &"
+     $startCommand
    
     } # downloadFiles_FromGitHub
 
