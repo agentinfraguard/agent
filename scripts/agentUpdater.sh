@@ -152,6 +152,7 @@ installAgent() {
      echo "Process id is $pId"
      echo "station 1"
      export start="start"
+     export stop="stop"
      echo "station 2"
      # Since fedore automatically added '.service' suffix in file name, so here ignore file extn
      echo "station 3"
@@ -165,13 +166,13 @@ installAgent() {
      echo "station 6"
      echo " $command ${start}"
      echo "station 7"
-     export stopCommand="( sleep 3 ) && (sh $command stop) &"
+     export stopCommand="( sleep 3 ) && (sh $command ${stop}) &"
      echo "station 8"
      $stopCommand
      echo "station 9"
      echo $stopCommand
      echo "station 10"
-     export startCommand="( sleep 10 ) && (sh $command start) &"
+     export startCommand="( sleep 10 ) && (sh $command ${start}) &"
      echo "station 11"
      $startCommand
      echo "station 12"
