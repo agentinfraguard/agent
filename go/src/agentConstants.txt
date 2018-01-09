@@ -44,6 +44,7 @@ responseUrl_createCron="http://rc.infraguard.io/commandexecutedbyagentforcron"
 responseUrl_editCron="http://rc.infraguard.io/commandexecutedbyagentforcron"
 responseUrl_deleteCron="http://rc.infraguard.io/commandexecutedbyagentforcron"
 responseUrl_rawCommandScript="http://rc.infraguard.io/commandexecutedbyagent"
+responseUrl_checkServerStatus="http://rc.infraguard.io/commandexecutedbyagent"
  
  
 DEFAULT_VALUE="DEFAULT_VALUE"
