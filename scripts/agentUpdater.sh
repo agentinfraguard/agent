@@ -148,43 +148,19 @@ installAgent() {
              chkconfig --add /etc/init.d/$fileAgentController     
      fi
  
-     pId=$(ps -ef | grep 'infraGuardMain' | grep -v 'grep' | awk '{ printf $2 }')
-     echo "Process id is $pId"
-     echo "station 1"
+
      export start="start"
-     export stop="stop"
-     echo "station 2"
+
      # Since fedore automatically added '.service' suffix in file name, so here ignore file extn
-     echo "station 3"
      if [[ $os == "fedora" ]]; then
-	echo "station 4"
          export command="/etc/init.d/agent_controller" 
      else    
-        echo "station 5"
-	 export command="/etc/init.d/$fileAgentController"
+         export command="/etc/init.d/$fileAgentController"
      fi
-     echo "station 6"
      echo " $command ${start}"
-     echo "station 7"
-     export stopCommand="bash -c sleep 10 ;  sh $command ${stop}"
-     echo $stopCommand
-     stopCommandOutput=$(bash -c sleep 10 ;  sh $command ${stop};)
-     stopCommandOutput2=$stopCommandOutput
-     echo $stopCommandOutput
-     echo $stopCommandOutput2
-     echo "station 8"
-     echo "station 9"
-     echo "station 10"
-     export startCommand="bash -c sleep 15 ;  sh $command ${start}"
-     startCommandOutput=$(bash -c sleep 15 ;  sh $command ${start};)
-     startCommandOutput2=$startCommandOutput
-     echo $startCommandOutput
-     echo $startCommandOutput2
-     echo "station 11"
-     echo "station 12"
-     echo $startCommand
-     echo "station 13"
-     
+     sh $command ${start}
+
+   
     } # downloadFiles_FromGitHub
 
 
@@ -209,7 +185,7 @@ if [ -f "$file" ]
         echo "Agent is stopped."
     else
         echo "Agent is running. Process id is $pId"
-	
+	$(kill -9 $pId)
     fi
 
    #Creating backup file of current agent. This file will be deleted after successful installation of current agent
