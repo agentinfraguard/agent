@@ -16,7 +16,7 @@ start() {
 echo ""
 echo $"***********  agent_controller service started. Triggered from /etc/init.d/agent_controller_ubuntu.sh ***********"
 command="/opt/infraguard/sbin/infraGuardMain"
-$command > /dev/null 2>&1 &
+ nohup $command >/dev/null 2>&1 &
 
 }
 
