@@ -152,22 +152,14 @@ installAgent() {
      export start="start"
 
      # Since fedore automatically added '.service' suffix in file name, so here ignore file extn
-     if [[ $os == "fedora" ]]; then
+     if [[ $os == "fedora" ] || [ $os == "centos" ]]; then
          export command="/etc/init.d/agent_controller" 
      else    
          export command="/etc/init.d/$fileAgentController"
      fi
-     
      echo " $command ${start}"
-     
-     if [[ $os == "centos" ]]; then
-         export command="nohup /opt/infraguard/sbin/infraGuardMain >/dev/null 2>&1 &"
-	 $command
-     else    
-	 sh $command ${start}
-     fi
-     
-     
+     sh $command ${start}
+
    
     } # downloadFiles_FromGitHub
 
