@@ -160,8 +160,7 @@ installAgent() {
      echo " $command ${start}"
 
      if [[ $os == "centos" ]]; then
-          export command="nohup /opt/infraguard/sbin/infraGuardMain >/dev/null 2>&1 &"
- 	  $command
+          $(nohup "/opt/infraguard/sbin/infraGuardMain >/dev/null 2>&1" &)
       else    
  	  sh $command ${start}
       fi
